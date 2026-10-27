@@ -1,0 +1,7 @@
+{
+  "name": "{{NAME}}",
+  "icon": "{{ICON}}",
+  "desc": "{{DESC}}",
+  "status": "live",
+  "order": 100
+}
