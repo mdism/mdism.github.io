@@ -1,9 +1,0 @@
----
-# MilesWeb (cPanel) deployment for https://tools.shaikhismail.com/
-# Publishes public/ to the root of the tools subdomain. The tool repos deploy into their own folders next to it;
-# copying never deletes those folders.
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/qyotupjl/tools.shaikhismail.com/
-    - /bin/mkdir -p $DEPLOYPATH
-    - /bin/cp -R public/. $DEPLOYPATH

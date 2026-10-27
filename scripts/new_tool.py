@@ -2,12 +2,12 @@
 
     python scripts/new_tool.py word-counter "Word Counter" "Count words, characters and reading time." --icon Wc --what "text"
 
-Creates ../tool-word-counter/ next to this repo: a ready-to-deploy page with the privacy notice,
-privacy policy, bot check, footer version, shared styles and a .cpanel.yml that deploys it to
-https://tools.shaikhismail.com/word-counter/. It also makes the first git commit (nothing is pushed).
+Creates ../word-counter/ next to this repo: a ready-to-deploy page with the privacy notice,
+privacy policy, bot check, footer version, shared styles and a GitHub Pages workflow. Pushed as the repo
+"word-counter", it is served at https://tools.shaikhismail.com/word-counter/. It also makes the first git commit (nothing is pushed).
 
-Once deployed, the tools landing page lists it automatically (it reads public/tool.json).
-Nothing to edit in tools-hub.
+Add the topic shaikhismail-tool on GitHub and the landing page lists it automatically (it reads public/tool.json).
+Nothing to edit in this repo.
 """
 import argparse, datetime, pathlib, re, shutil, subprocess, sys
 
@@ -24,7 +24,7 @@ a = ap.parse_args()
 
 if not re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', a.slug):
     sys.exit('slug must be lowercase letters, numbers and dashes, like word-counter')
-dest = HUB.parent / f'tool-{a.slug}'
+dest = HUB.parent / a.slug
 if dest.exists():
     sys.exit(f'{dest} already exists')
 
@@ -57,8 +57,8 @@ print(f'''Created {dest}
 
 Next:
   1. Build the tool in public/index.html and public/assets/js/app.js (open index.html in a browser to try it).
-  2. Create an empty GitHub repo named tool-{a.slug}, then:
-       git -C "{dest}" remote add origin https://github.com/mdism/tool-{a.slug}.git
+  2. Create an empty public GitHub repo named {a.slug}, then:
+       git -C "{dest}" remote add origin https://github.com/mdism/{a.slug}.git
        git -C "{dest}" push -u origin main
-  3. cPanel → Git Version Control → clone it → Deploy HEAD Commit.
-It appears on https://tools.shaikhismail.com/ by itself, at /{a.slug}/.''')
+  3. On GitHub: Settings → Pages → Source: GitHub Actions, and add the topic shaikhismail-tool.
+It appears at https://tools.shaikhismail.com/{a.slug}/ and on the landing page by itself.''')

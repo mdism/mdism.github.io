@@ -30,27 +30,23 @@ public/                 Everything that gets published to /{{SLUG}}/
     ├── js/common.js    Theme toggle, drop zone, download helpers, Turnstile gate
     └── js/app.js       The tool's logic
 scripts/bump_version.py Release helper
-.cpanel.yml             Copies public/ to tools.shaikhismail.com/{{SLUG}}/
+.github/workflows/pages.yml  Publishes public/ to tools.shaikhismail.com/{{SLUG}}/
 ```
 
 Third-party libraries: none yet (save any you add in `public/assets/vendor/`, never load from a CDN).
 
 ## How it is hosted
 
-All the free tools share one subdomain, **tools.shaikhismail.com**. Each tool is its own repo and deploys into its own folder:
+GitHub Pages, for free. Every push to `main` publishes `public/` (see `.github/workflows/pages.yml`).
+Because the user site [mdism.github.io](https://github.com/mdism/mdism.github.io) has the custom domain tools.shaikhismail.com,
+this repo appears at https://tools.shaikhismail.com/{{SLUG}}/ automatically.
 
-| Repo | Address |
-|---|---|
-| [tools-hub](https://github.com/mdism/tools-hub) | https://tools.shaikhismail.com/ (landing page, security rules, bot check) |
-| this repo | https://tools.shaikhismail.com/{{SLUG}}/ |
+One-time, in this repo on GitHub:
 
-Set up the subdomain and the tools-hub repo first (see its README). Then, once for this repo:
+1. **Settings → Pages → Build and deployment → Source: GitHub Actions.**
+2. **About (gear icon on the repo page) → Topics:** add `shaikhismail-tool`. That is what puts the tool on the landing page.
 
-cPanel → **Git Version Control** → Create → Clone a Repository:
-- Clone URL: `https://github.com/mdism/tool-{{SLUG}}.git`
-- Repository path: `repositories/tool-{{SLUG}}`
-
-Each update: push to GitHub, then cPanel → Git Version Control → Manage → **Pull or Deploy** → *Update from Remote*, then *Deploy HEAD Commit*.
+The repo name is the URL path, so keep it as `{{SLUG}}`.
 
 ## Privacy and security
 

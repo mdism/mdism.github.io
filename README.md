@@ -1,49 +1,62 @@
-# tools-hub
+# mdism.github.io
 
-The landing page and shared server setup for **https://tools.shaikhismail.com**, the free browser tools by [Mohammed Ismail Shaikh](https://shaikhismail.com).
+The landing page for **https://tools.shaikhismail.com**, the free browser tools by [Mohammed Ismail Shaikh](https://shaikhismail.com), hosted on GitHub Pages.
 
-Every tool is its own repo and deploys into its own folder of this subdomain:
+This is your GitHub *user site*. Because it has the custom domain tools.shaikhismail.com, every other repo of yours with Pages
+turned on is published under it automatically, at `/<repo-name>/`:
 
 | Repo | Address |
 |---|---|
-| tools-hub (this repo) | https://tools.shaikhismail.com/ |
-| [tool-image-compressor](https://github.com/mdism/tool-image-compressor) | https://tools.shaikhismail.com/image-compressor/ |
-| [tool-pdf-merge-split](https://github.com/mdism/tool-pdf-merge-split) | https://tools.shaikhismail.com/pdf-merge-split/ |
-| [tool-exam-photo-resizer](https://github.com/mdism/tool-exam-photo-resizer) | https://tools.shaikhismail.com/exam-photo-resizer/ |
-| [tool-gst-emi-calculator](https://github.com/mdism/tool-gst-emi-calculator) | https://tools.shaikhismail.com/gst-emi-calculator/ |
+| mdism.github.io (this repo) | https://tools.shaikhismail.com/ |
+| [image-compressor](https://github.com/mdism/image-compressor) | https://tools.shaikhismail.com/image-compressor/ |
+| [pdf-merge-split](https://github.com/mdism/pdf-merge-split) | https://tools.shaikhismail.com/pdf-merge-split/ |
+| [exam-photo-resizer](https://github.com/mdism/exam-photo-resizer) | https://tools.shaikhismail.com/exam-photo-resizer/ |
+| [gst-emi-calculator](https://github.com/mdism/gst-emi-calculator) | https://tools.shaikhismail.com/gst-emi-calculator/ |
 
 ## What is in here
 
 ```
-public/                      Published to the root of tools.shaikhismail.com
-├── index.html               Landing page (the list comes from assets/js/tools.js)
-├── privacy.html             Privacy policy for all the tools
-├── .htaccess                HTTPS, security headers, bot and scanner blocking for the whole subdomain
-├── api/verify.php           Confirms Cloudflare Turnstile tokens for every tool
+public/                        Published to https://tools.shaikhismail.com/
+├── index.html                 Landing page (finds tools by GitHub topic)
+├── privacy.html               Privacy policy for all the tools
+├── 404.html                   Not-found page for the whole subdomain
+├── CNAME                      tools.shaikhismail.com
+├── api/config.json            Address of the bot-check Worker (used by every tool)
 ├── robots.txt, sitemap.xml, .well-known/security.txt
-└── assets/                  Styles, font, theme toggle, tools list
-config/turnstile.example.php Format of the private secret file (the real one is git-ignored)
-scripts/bump_version.py      Release helper
-.cpanel.yml                  Copies public/ to the subdomain root
+└── assets/                    Styles, font, theme toggle, tools list
+worker/turnstile-verify.js     Cloudflare Worker that confirms Turnstile tokens (not published)
+scripts/new_tool.py            Starts a new tool repo with everything wired in
+template/                      What new_tool.py copies
+.github/workflows/pages.yml    Publishes public/ on every push
 ```
 
-## One-time setup on MilesWeb (cPanel)
+## One-time setup
 
-1. **Subdomain:** cPanel → **Domains** → Create a new domain → `tools.shaikhismail.com`. Untick "Share document root", and set the document root to `tools.shaikhismail.com` (that is `/home/qyotupjl/tools.shaikhismail.com`).
-2. **SSL:** cPanel → **SSL/TLS Status** → Run AutoSSL.
-3. **Turnstile secret:** copy `config/turnstile.example.php` to `turnstile.php`, put the secret in it, and upload it with File Manager to `/home/qyotupjl/.config/shaikhismail-tools/turnstile.php` (create the folders; outside public_html). Set permissions to 600. Never commit it.
-4. **Cloudflare:** in the Turnstile widget settings, add `tools.shaikhismail.com` as a hostname.
-5. **Deploy this repo:** cPanel → **Git Version Control** → Create → Clone a Repository, URL `https://github.com/mdism/tools-hub.git`, path `repositories/tools-hub`, then Manage → Pull or Deploy → *Deploy HEAD Commit*.
-6. **Deploy each tool repo** the same way. Each one's `.cpanel.yml` already points at its own folder.
-7. On shaikhismail.com, point the tools page at the new addresses (see the TOOLS list in the mdism/mdism repo).
+**1. Create the repo.** On GitHub, create a public repo named exactly `mdism.github.io` and push this folder to it.
 
-Needs PHP 8 with curl for `api/verify.php`; cPanel has both. Optional and free: put the domain behind Cloudflare (proxied DNS, Bot Fight Mode, Always Use HTTPS).
+**2. Turn on Pages.** Repo → Settings → Pages → Source: **GitHub Actions**. The workflow publishes on the next push (or run it from the Actions tab).
+
+**3. Add the domain on MilesWeb.** cPanel → **Zone Editor** → shaikhismail.com → Add Record:
+- Type `CNAME`, Name `tools`, Record `mdism.github.io`
+
+Then on GitHub: Settings → Pages → Custom domain → `tools.shaikhismail.com` → Save. Wait for the DNS check to pass (minutes to a few hours), then tick **Enforce HTTPS**.
+Recommended: GitHub → your profile Settings → Pages → **Add a domain** to verify `shaikhismail.com`, so nobody else can claim your subdomains.
+
+**4. Bot-check Worker (free).** Cloudflare dashboard → Workers & Pages → Create → Worker → name it `tools-verify` → Deploy → Edit code → paste `worker/turnstile-verify.js` → Deploy.
+Then Settings → Variables and Secrets → Add → type **Secret**, name `TURNSTILE_SECRET`, value = your Turnstile secret key.
+Copy the Worker's address (like `https://tools-verify.<your-name>.workers.dev`) into `public/api/config.json`, commit and push.
+
+**5. Turnstile hostname.** Cloudflare → Turnstile → your widget → Hostnames: make sure `tools.shaikhismail.com` is listed.
+
+**6. Each tool repo:** push it, set Settings → Pages → Source: **GitHub Actions**, and add the topic `shaikhismail-tool`. It appears at `/<repo-name>/` and on the landing page.
 
 ## Adding a new tool
 
-1. Create a repo `tool-<what-it-does>` like the others, with `.cpanel.yml` deploying `public/` to `/home/qyotupjl/tools.shaikhismail.com/<what-it-does>/`.
-2. Add one line to `public/assets/js/tools.js` here, and its address to `public/sitemap.xml`.
-3. Deploy both.
+```
+python scripts/new_tool.py word-counter "Word Counter" "Count words, characters and reading time." --what "text"
+```
+
+This creates `../word-counter/`, ready to build. Push it as a repo named `word-counter`, turn on Pages (GitHub Actions), add the topic `shaikhismail-tool`. Done: it shows up on the landing page by itself.
 
 ## License
 

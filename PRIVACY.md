@@ -25,11 +25,11 @@ Only your light or dark theme choice, and only if you use the toggle. It stays i
 
 ## Bot protection (Cloudflare Turnstile)
 
-To keep bots and spammers out, each tool asks for a quick Cloudflare Turnstile check before it unlocks. Cloudflare looks at technical signals from your browser, such as your IP address and browser details, to tell people from bots. It never sees your files or anything you type. Our server only passes the one-time token to Cloudflare for a yes or no and keeps nothing. Cloudflare handles its part under the Cloudflare privacy policy.
+To keep bots and spammers out, each tool asks for a quick Cloudflare Turnstile check before it unlocks. Cloudflare looks at technical signals from your browser, such as your IP address and browser details, to tell people from bots. It never sees your files or anything you type. Our small verification service, which also runs on Cloudflare, only passes the one-time token to Cloudflare for a yes or no and keeps nothing. Cloudflare handles its part under the Cloudflare privacy policy.
 
-## What the web server sees
+## What the web host sees
 
-Like every website, the hosting provider (MilesWeb) automatically keeps standard access logs when a page loads: your IP address, the date and time, the page requested and your browser type. These logs are used only to keep the site secure and running, are kept for a limited time, and never contain your files or inputs.
+This site is hosted on GitHub Pages. Like every web host, GitHub automatically records basic technical data when a page loads, such as your IP address, to deliver the page and protect its service. GitHub handles that under the GitHub privacy statement. It never includes your files or anything you type into the tool, and we do not receive it.
 
 ## Changes and contact
 
