@@ -5,13 +5,27 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self' https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://api.github.com; form-action 'none'; base-uri 'none'">
 <meta name="referrer" content="no-referrer">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Free Tools — Ismail Shaikh</title>
-<meta name="description" content="Small, free browser tools by Ismail Shaikh. Files stay on your device: nothing is uploaded, saved or tracked.">
+<!-- seo -->
+<title>Free Online Tools: Image, PDF, Photo, Age &amp; Money Calculators | No Upload</title>
+<meta name="description" content="Free browser tools by Ismail Shaikh: compress images, convert PDF to image and image to PDF, merge PDFs, resize exam photos, and calculate age, GST and EMI. Nothing is uploaded.">
+<meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://tools.shaikhismail.com/">
-<meta property="og:title" content="Free tools by Ismail Shaikh">
-<meta property="og:description" content="Image, PDF, exam photo and money tools that run in your browser. Nothing is uploaded.">
+<meta name="author" content="Mohammed Ismail Shaikh">
+<meta name="theme-color" content="#155E3B">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Free tools by Ismail Shaikh">
+<meta property="og:locale" content="en_IN">
+<meta property="og:url" content="https://tools.shaikhismail.com/">
+<meta property="og:title" content="Free Online Tools: Image, PDF, Photo, Age &amp; Money Calculators | No Upload">
+<meta property="og:description" content="Free browser tools by Ismail Shaikh: compress images, convert PDF to image and image to PDF, merge PDFs, resize exam photos, and calculate age, GST and EMI. Nothing is uploaded.">
+<meta property="og:image" content="https://tools.shaikhismail.com/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","name":"Free tools by Ismail Shaikh","url":"https://tools.shaikhismail.com/","inLanguage":"en","publisher":{"@type":"Person","name":"Mohammed Ismail Shaikh","url":"https://shaikhismail.com/"}},{"@type":"CollectionPage","name":"Free tools","url":"https://tools.shaikhismail.com/","description":"Free browser tools by Ismail Shaikh: compress images, convert PDF to image and image to PDF, merge PDFs, resize exam photos, and calculate age, GST and EMI. Nothing is uploaded.","mainEntity":{"@type":"ItemList","itemListElement":[{"@type":"ListItem","position":1,"name":"Image Compressor","url":"https://tools.shaikhismail.com/image-compressor/"},{"@type":"ListItem","position":2,"name":"PDF Merge & Split","url":"https://tools.shaikhismail.com/pdf-merge-split/"},{"@type":"ListItem","position":3,"name":"PDF Merge","url":"https://tools.shaikhismail.com/pdf-merge/"},{"@type":"ListItem","position":4,"name":"PDF Split","url":"https://tools.shaikhismail.com/pdf-split/"},{"@type":"ListItem","position":5,"name":"PDF to Image","url":"https://tools.shaikhismail.com/pdf-to-image/"},{"@type":"ListItem","position":6,"name":"Image to PDF","url":"https://tools.shaikhismail.com/image-to-pdf/"},{"@type":"ListItem","position":7,"name":"Exam Photo Resizer","url":"https://tools.shaikhismail.com/exam-photo-resizer/"},{"@type":"ListItem","position":8,"name":"GST, EMI & SIP Calculator","url":"https://tools.shaikhismail.com/gst-emi-calculator/"},{"@type":"ListItem","position":9,"name":"Age Calculator","url":"https://tools.shaikhismail.com/age-calculator/"}]}},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://shaikhismail.com/"},{"@type":"ListItem","position":2,"name":"Free tools","item":"https://tools.shaikhismail.com/"}]}]}</script>
+<!-- /seo -->
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23155E3B'/><text x='50' y='68' font-size='58' text-anchor='middle' fill='%23F5821F' font-family='monospace' font-weight='bold'>i</text></svg>">
-<link rel="stylesheet" href="/assets/css/tool.css?v=2.0.0">
+<link rel="stylesheet" href="/assets/css/tool.css?v=2.1.0">
 </head>
 <body>
 <header class="top">
@@ -26,6 +40,9 @@
 
 <main>
   <div class="wrap stack">
+<!-- crumbs -->
+    <nav class="crumbs" aria-label="Breadcrumb"><ol><li><a href="https://shaikhismail.com/">Home</a></li><li aria-current="page">Free tools</li></ol></nav>
+<!-- /crumbs -->
     <div>
       <div class="prompt" aria-hidden="true"><span class="u">guest</span>@<span class="d">tools</span>:~$ ls</div>
       <h1>Free tools</h1>
@@ -33,18 +50,30 @@
       <div class="notice" role="note"><span class="ico" aria-hidden="true">✓</span><div><strong>We save nothing.</strong> Every tool runs on your device. Your files and numbers are never uploaded, and anything held while processing is temporary and deleted as soon as it is done.<p>No sign-up, no analytics, no ads. <a href="/privacy.html">Privacy policy</a></p></div></div>
     </div>
 
-    <div class="tools-grid" id="toolsGrid"></div>
+    <div class="tools-grid" id="toolsGrid">
+<!-- cards -->
+      <a class="tool" href="/image-compressor/"><span class="ico" aria-hidden="true">Im</span><h2>Image Compressor</h2><p>Shrink JPG, PNG and WebP files right in your browser. Nothing is uploaded.</p><div class="meta"><span>/image-compressor/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/pdf-merge-split/"><span class="ico" aria-hidden="true">Pd</span><h2>PDF Merge &amp; Split</h2><p>Combine PDFs into one, or pull out the pages you need.</p><div class="meta"><span>/pdf-merge-split/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/pdf-merge/"><span class="ico" aria-hidden="true">Mg</span><h2>PDF Merge</h2><p>Combine PDFs into one file, and compress or enhance the result. Scanned or digital.</p><div class="meta"><span>/pdf-merge/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/pdf-split/"><span class="ico" aria-hidden="true">Sp</span><h2>PDF Split</h2><p>Split a PDF into pages or ranges, and compress or enhance the result. Scanned or digital.</p><div class="meta"><span>/pdf-split/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/pdf-to-image/"><span class="ico" aria-hidden="true">P→</span><h2>PDF to Image</h2><p>Turn every page of a PDF into a JPG or PNG image, right in your browser.</p><div class="meta"><span>/pdf-to-image/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/image-to-pdf/"><span class="ico" aria-hidden="true">→P</span><h2>Image to PDF</h2><p>Turn photos and scans into a PDF. Arrange and rotate them first, all in your browser.</p><div class="meta"><span>/image-to-pdf/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/exam-photo-resizer/"><span class="ico" aria-hidden="true">Ph</span><h2>Exam Photo Resizer</h2><p>Resize photos and signatures to exact KB and pixel sizes for exam forms.</p><div class="meta"><span>/exam-photo-resizer/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/gst-emi-calculator/"><span class="ico" aria-hidden="true">₹</span><h2>GST, EMI &amp; SIP Calculator</h2><p>Quick GST, EMI and SIP calculations with clear breakdowns.</p><div class="meta"><span>/gst-emi-calculator/</span><span class="go">Open →</span></div></a>
+      <a class="tool" href="/age-calculator/"><span class="ico" aria-hidden="true">Ag</span><h2>Age Calculator</h2><p>Find your exact age in years, months, days, hours, minutes and seconds.</p><div class="meta"><span>/age-calculator/</span><span class="go">Open →</span></div></a>
+<!-- /cards -->
+    </div>
   </div>
 </main>
 
 <footer class="foot">
   <div class="wrap">
-    <span>&copy; <span id="yr">2026</span> <a href="https://shaikhismail.com/">Mohammed Ismail Shaikh</a> · <a class="ver" id="ver" href="https://github.com/mdism/mdism.github.io/blob/main/CHANGELOG.md" target="_blank" rel="noopener" title="What changed in this version">v2.0.0</a> · free and open source</span>
+    <span>&copy; <span id="yr">2026</span> <a href="https://shaikhismail.com/">Mohammed Ismail Shaikh</a> · <a class="ver" id="ver" href="https://github.com/mdism/mdism.github.io/blob/main/CHANGELOG.md" target="_blank" rel="noopener" title="What changed in this version">v2.1.0</a> · free and open source</span>
     <span><a href="/privacy.html">Privacy</a> · <a href="https://shaikhismail.com/">shaikhismail.com</a></span>
   </div>
 </footer>
 
-<script src="/assets/js/common.js?v=2.0.0"></script>
-<script src="/assets/js/tools.js?v=2.0.0"></script>
+<script src="/assets/js/common.js?v=2.1.0"></script>
+<script src="/assets/js/tools.js?v=2.1.0"></script>
 </body>
 </html>

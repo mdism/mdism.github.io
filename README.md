@@ -17,7 +17,7 @@ turned on is published under it automatically, at `/<repo-name>/`:
 
 ```
 public/                        Published to https://tools.shaikhismail.com/
-├── index.html                 Landing page (finds tools by GitHub topic)
+├── index.html                 Landing page (finds tools by GitHub topic; built-in cards for search engines)
 ├── privacy.html               Privacy policy for all the tools
 ├── 404.html                   Not-found page for the whole subdomain
 ├── CNAME                      tools.shaikhismail.com
@@ -26,6 +26,7 @@ public/                        Published to https://tools.shaikhismail.com/
 └── assets/                    Styles, font, theme toggle, tools list
 worker/turnstile-verify.js     Cloudflare Worker that confirms Turnstile tokens (not published)
 scripts/new_tool.py            Starts a new tool repo with everything wired in
+scripts/update_index.py        Refreshes the built-in tool cards, fallback list and sitemap
 template/                      What new_tool.py copies
 .github/workflows/pages.yml    Publishes public/ on every push
 ```
@@ -52,11 +53,34 @@ Copy the Worker's address (like `https://tools-verify.<your-name>.workers.dev`) 
 
 ## Adding a new tool
 
+Keep every tool folder next to this one (for example all inside one `free-tools` folder), then:
+
 ```
-python scripts/new_tool.py word-counter "Word Counter" "Count words, characters and reading time." --what "text"
+python scripts/new_tool.py word-counter "Word Counter" "Count words, characters and reading time." --icon Wc \
+    --what "texts" --input "Any text" --process "Counts words, characters and sentences" --output "Totals and reading time"
 ```
 
-This creates `../word-counter/`, ready to build. Push it as a repo named `word-counter`, turn on Pages (GitHub Actions), add the topic `shaikhismail-tool`. Done: it shows up on the landing page by itself.
+This creates `../word-counter/` with the breadcrumb, input → process → output strip, Questions section, SEO tags,
+privacy page, bot check and footer version already in place, and refreshes this repo's tool cards and sitemap.
+Nothing is committed. Then:
+
+1. Build the tool in `public/index.html` and `public/assets/js/app.js`, and edit the Questions answers if you like.
+2. Commit and push it as a repo named `word-counter`, turn on Pages (GitHub Actions) and add the topic `shaikhismail-tool`.
+   It shows up on the live landing page by itself.
+3. Commit and push this repo too, so the sitemap and the built-in cards include it.
+
+Changed a tool's name, icon or description in its `public/tool.json`? Run `python scripts/update_index.py` and push this repo.
+
+## Getting found on Google
+
+Every page has a clear title and description, a canonical address, share previews (`assets/og.png`),
+structured data (web app, breadcrumb, FAQ) and is listed in `sitemap.xml`. To get indexed faster:
+
+1. [Google Search Console](https://search.google.com/search-console) → Add property → **Domain** `shaikhismail.com`
+   (verify with the TXT record it gives you, in cPanel → Zone Editor). This covers tools.shaikhismail.com too.
+2. Sitemaps → submit `https://tools.shaikhismail.com/sitemap.xml`.
+3. Optional: the same in [Bing Webmaster Tools](https://www.bing.com/webmasters) (it can import from Search Console).
+4. Link to the tools from shaikhismail.com and anywhere you share your work; links are what make new pages rank.
 
 ## License
 

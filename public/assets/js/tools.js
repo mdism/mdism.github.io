@@ -7,8 +7,13 @@
 window.TOOLS = [
   { name: "Image Compressor", icon: "Im", desc: "Shrink JPG, PNG and WebP files right in your browser. Nothing is uploaded.", url: "/image-compressor/", status: "live" },
   { name: "PDF Merge & Split", icon: "Pd", desc: "Combine PDFs into one, or pull out the pages you need.", url: "/pdf-merge-split/", status: "live" },
+  { name: "PDF Merge", icon: "Mg", desc: "Combine PDFs into one file, and compress or enhance the result. Scanned or digital.", url: "/pdf-merge/", status: "live" },
+  { name: "PDF Split", icon: "Sp", desc: "Split a PDF into pages or ranges, and compress or enhance the result. Scanned or digital.", url: "/pdf-split/", status: "live" },
+  { name: "PDF to Image", icon: "P→", desc: "Turn every page of a PDF into a JPG or PNG image, right in your browser.", url: "/pdf-to-image/", status: "live" },
+  { name: "Image to PDF", icon: "→P", desc: "Turn photos and scans into a PDF. Arrange and rotate them first, all in your browser.", url: "/image-to-pdf/", status: "live" },
   { name: "Exam Photo Resizer", icon: "Ph", desc: "Resize photos and signatures to exact KB and pixel sizes for exam forms.", url: "/exam-photo-resizer/", status: "live" },
   { name: "GST, EMI & SIP Calculator", icon: "₹", desc: "Quick GST, EMI and SIP calculations with clear breakdowns.", url: "/gst-emi-calculator/", status: "live" },
+  { name: "Age Calculator", icon: "Ag", desc: "Find your exact age in years, months, days, hours, minutes and seconds.", url: "/age-calculator/", status: "live" },
 ];
 
 (function () {
